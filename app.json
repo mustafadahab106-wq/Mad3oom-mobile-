@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "مدعوم",
+    "slug": "mad3oom",
+    "scheme": "mad3oom",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "plugins": [
+      "expo-router",
+      ["expo-image-picker", {
+        "photosPermission": "يحتاج مدعوم الوصول إلى الصور لإضافة صور السيارة.",
+        "cameraPermission": "يحتاج مدعوم استخدام الكاميرا لتصوير السيارة."
+      }]
+    ],
+    "android": {
+      "package": "com.mad3oom.app",
+      "permissions": ["CAMERA"],
+      "adaptiveIcon": {
+        "backgroundColor": "#0B0D10"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.mad3oom.app",
+      "supportsTablet": true
+    },
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
