@@ -9,14 +9,20 @@
     "newArchEnabled": true,
     "plugins": [
       "expo-router",
-      ["expo-image-picker", {
-        "photosPermission": "يحتاج مدعوم الوصول إلى الصور لإضافة صور السيارة.",
-        "cameraPermission": "يحتاج مدعوم استخدام الكاميرا لتصوير السيارة."
-      }]
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "يحتاج مدعوم الوصول إلى الصور لإضافة صور السيارة.",
+          "cameraPermission": "يحتاج مدعوم استخدام الكاميرا لتصوير السيارة."
+        }
+      ]
     ],
     "android": {
       "package": "com.mad3oom.app",
-      "permissions": ["CAMERA"],
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
       "adaptiveIcon": {
         "backgroundColor": "#0B0D10"
       }
@@ -27,6 +33,13 @@
     },
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "6f4898e9-c40e-4114-8757-efa803b30c0f"
+      }
+    },
+    "owner": "mustafadahab"
   }
 }
