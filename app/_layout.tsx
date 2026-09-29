@@ -12,6 +12,7 @@ function Navigation(){
  return <AuthProvider><View style={{flex:1}}><StatusBar style="light"/><Stack screenOptions={{headerStyle:{backgroundColor:colors.black},headerTintColor:"#fff",headerTitleStyle:{fontWeight:"800"},contentStyle:{backgroundColor:colors.bg}}}>
    <Stack.Screen name="(tabs)" options={{headerShown:false}}/>
    <Stack.Screen name="listing/[id]" options={{title:tr("تفاصيل الإعلان","Listing details")}}/>
+   <Stack.Screen name="edit-profile" options={{title:tr("تعديل الملف الشخصي","Edit profile"),headerStyle:{backgroundColor:"#FFD500"},headerTintColor:"#111"}}/>
    <Stack.Screen name="login" options={{title:tr("حساب مدعوم","MAD3OOM account"),presentation:"modal"}}/>
    <Stack.Screen name="chat/[id]" options={{title:tr("المحادثة","Chat")}}/>
    <Stack.Screen name="admin/field-inventory" options={{title:tr("الجرد الميداني","Field inventory")}}/>
