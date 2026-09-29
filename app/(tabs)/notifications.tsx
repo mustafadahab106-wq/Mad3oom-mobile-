@@ -88,7 +88,7 @@ export default function Notifications(){
         <View style={s.cardContent}>
           <View style={s.cardHeading}><Text style={[s.cardTitle,{textAlign:isRTL?"right":"left"}]}>{item.title}</Text>{!item.readAt&&<View style={s.dot}/>}</View>
           <Text style={[s.body,{textAlign:isRTL?"right":"left"}]} numberOfLines={3}>{item.body}</Text>
-          <View style={s.meta}><Text style={s.time}>{ago(item.createdAt,tr)}</Text><Pressable style={s.delete} onPress={()=>remove(item)} accessibilityLabel={tr("حذف الإشعار","Delete notification")}><Ionicons name="trash-outline" size={19} color="#777"/></Pressable></View>
+          <View style={s.meta}><Text style={s.time}>{ago(item.createdAt,tr)}</Text><Pressable style={s.delete} onPress={(event)=>{event.stopPropagation();remove(item)}} accessibilityLabel={tr("حذف الإشعار","Delete notification")}><Ionicons name="trash-outline" size={19} color="#777"/></Pressable></View>
           {message&&!!item.conversationId&&<Text style={s.category}>{tr("دردشة • اضغط لفتح المحادثة","Chat • tap to open")}</Text>}
         </View>
       </Pressable>;
