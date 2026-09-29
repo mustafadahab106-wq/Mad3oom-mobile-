@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "مدعوم",
-    "slug": "mad3oom",
+    "slug": "mad3oom-final",
     "scheme": "mad3oom",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -37,7 +37,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "6f4898e9-c40e-4114-8757-efa803b30c0f"
+        "projectId": "cd1bfe03-2320-4e0e-a9fe-853d64cac03f"
       }
     },
     "owner": "mustafadahab"
