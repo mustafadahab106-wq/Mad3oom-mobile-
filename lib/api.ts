@@ -84,3 +84,10 @@ export async function chatWithDibo(message:string,history:ChatTurn[]=[]):Promise
   return api.post("/ai/chat",{message,history});
 }
 export const maskVin=(vin?:string)=>vin?`${vin.slice(0,Math.max(0,vin.length-6))}${"*".repeat(Math.min(6,vin.length))}`:"—";
+
+export type AppNotification={id:number;userId:number;type:string;title:string;body:string;conversationId:number|null;messageId:number|null;readAt:string|null;createdAt:string};
+export async function getNotifications():Promise<AppNotification[]>{const d=await api.get("/messages/notifications");return Array.isArray(d)?d:d?.data||[]}
+export async function markNotificationRead(id:number){return api.patch(`/messages/notifications/${id}/read`)}
+export async function markAllNotificationsRead(){return api.patch("/messages/notifications/read-all")}
+export async function deleteNotification(id:number){return api.del(`/messages/notifications/${id}`)}
+export async function clearNotifications(){return api.del("/messages/notifications")}
