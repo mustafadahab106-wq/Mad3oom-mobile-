@@ -79,6 +79,7 @@ export default function Notifications(){
         [stats.messages,tr("رسائل","Messages")],
         [stats.today,tr("جديد","New")],
       ].map(([n,label])=><View key={String(label)} style={s.stat}><View style={s.statCircle}><Text style={s.number}>{n}</Text></View><Text style={s.statLabel}>{label}</Text></View>)}</View>
+      <Pressable style={s.conversations} onPress={()=>router.push("/messages")}><Ionicons name="chatbubbles-outline" size={19} color={colors.black}/><Text style={s.conversationsText}>{tr("فتح كل المحادثات","Open all conversations")}</Text></Pressable>
       {!!error&&<Text style={s.error}>{error}</Text>}
     </>}
     renderItem={({item})=>{
@@ -114,6 +115,8 @@ const s=StyleSheet.create({
   stats:{flexDirection:"row",backgroundColor:"#F8F8F8",borderRadius:20,borderWidth:1,borderColor:"#ddd",paddingVertical:20,marginBottom:20},
   stat:{flex:1,alignItems:"center",gap:8},statCircle:{width:50,height:50,borderRadius:25,backgroundColor:yellow,alignItems:"center",justifyContent:"center"},
   number:{fontWeight:"900",fontSize:20,color:colors.black},statLabel:{fontSize:12,color:"#666"},
+  conversations:{flexDirection:"row-reverse",alignItems:"center",justifyContent:"center",gap:8,padding:11,marginBottom:15,borderRadius:13,backgroundColor:"#FFF6C6"},
+  conversationsText:{fontWeight:"800",color:colors.black},
   error:{color:"#B62929",marginBottom:12,textAlign:"center"},
   card:{flexDirection:"row",gap:12,backgroundColor:"#fff",borderRadius:20,borderWidth:1,borderColor:"#dedede",padding:16,marginBottom:13,elevation:2},
   unreadCard:{borderLeftWidth:5,borderLeftColor:yellow},
