@@ -91,3 +91,6 @@ export async function markNotificationRead(id:number){return api.patch(`/message
 export async function markAllNotificationsRead(){return api.patch("/messages/notifications/read-all")}
 export async function deleteNotification(id:number){return api.del(`/messages/notifications/${id}`)}
 export async function clearNotifications(){return api.del("/messages/notifications")}
+
+export type ProfileUpdate={name:string;phone:string;city:string;password?:string;currentPassword?:string};
+export async function updateProfile(dto:ProfileUpdate){return api.patch("/users/me",dto)}
