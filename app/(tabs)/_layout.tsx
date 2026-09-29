@@ -16,7 +16,7 @@ export default function TabsLayout(){
  return <Tabs screenOptions={{headerStyle:{backgroundColor:colors.black},headerTintColor:"#fff",headerTitleAlign:"center",headerTitleStyle:{fontWeight:"900"},tabBarActiveTintColor:colors.gold,tabBarInactiveTintColor:"#858A93",tabBarStyle:{height:58+insets.bottom,paddingBottom:insets.bottom+6,paddingTop:6,backgroundColor:colors.black,borderTopColor:"#252930"}}}>
  <Tabs.Screen name="index" options={{title:tr("الرئيسية","Home"),headerTitle:"MAD3OOM",tabBarIcon:icon("home")}}/>
  <Tabs.Screen name="search" options={{title:tr("البحث","Search"),tabBarIcon:icon("search")}}/>
- <Tabs.Screen name="add" options={{title:tr("أضف إعلان","Add"),tabBarIcon:icon("add-circle")}}/>
+ <Tabs.Screen name="add" options={{title:tr("إضافة إعلان","Add listing"),headerStyle:{backgroundColor:"#fff"},headerTintColor:colors.gold,tabBarIcon:icon("add-circle")}}/>
  <Tabs.Screen name="notifications" options={{title:tr("الإشعارات","Notifications"),headerShown:false,tabBarIcon:icon("notifications"),tabBarBadge:unread?unread:undefined}}/>
  <Tabs.Screen name="assistant" options={{href:null,title:tr("ديبو AI","Dibo AI")}}/>
  <Tabs.Screen name="messages" options={{href:null,title:tr("الرسائل","Messages")}}/>

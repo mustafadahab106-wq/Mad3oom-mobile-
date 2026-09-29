@@ -3,7 +3,7 @@ name: Build Android APK
 on:
   workflow_dispatch:
   push:
-    branches: [build/android-apk]
+    branches: [main, feature/add-listing-wizard]
 
 jobs:
   apk:
