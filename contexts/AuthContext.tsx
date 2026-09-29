@@ -2,8 +2,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React,{createContext,useContext,useEffect,useState} from "react";
 import {getCurrentUser,login as loginApi,register as registerApi} from "@/lib/api";
 
-export type User={id:number;name?:string;email:string;phone?:string;avatar?:string;isAdmin?:boolean;role?:string};
-type AuthValue={user:User|null;loading:boolean;signIn:(e:string,p:string)=>Promise<void>;signUp:(n:string,e:string,p:string)=>Promise<void>;signOut:()=>Promise<void>};
+export type User={id:number;name?:string;email:string;phone?:string;city?:string;avatar?:string;isAdmin?:boolean;role?:string};
+type AuthValue={user:User|null;loading:boolean;signIn:(e:string,p:string)=>Promise<void>;signUp:(n:string,e:string,p:string)=>Promise<void>;signOut:()=>Promise<void>;updateUser:(patch:Partial<User>)=>Promise<void>};
 const AuthContext=createContext<AuthValue>({} as AuthValue);
 function decodeToken(token:string):User|null{
  try{
@@ -16,7 +16,7 @@ function normalizeUser(raw:any,fallback:User|null=null):User|null{
  const value=raw?.data?.user??raw?.data??raw?.user??raw;
  if(!value||typeof value!=="object")return fallback;
  const id=Number(value.id??value.userId??fallback?.id);
- return{id,email:value.email??fallback?.email??"",name:value.name??value.fullName??fallback?.name,phone:value.phone??value.whatsapp??fallback?.phone,avatar:value.avatar??value.avatarUrl??fallback?.avatar,isAdmin:!!(value.isAdmin||value.role==="admin"||fallback?.isAdmin),role:value.role??fallback?.role};
+ return{id,email:value.email??fallback?.email??"",name:value.name??value.fullName??fallback?.name,phone:value.phone??value.whatsapp??fallback?.phone,city:value.city??fallback?.city,avatar:value.avatar??value.avatarUrl??fallback?.avatar,isAdmin:!!(value.isAdmin||value.role==="admin"||fallback?.isAdmin),role:value.role??fallback?.role};
 }
 export function AuthProvider({children}:{children:React.ReactNode}){
  const[user,setUser]=useState<User|null>(null);const[loading,setLoading]=useState(true);
@@ -36,6 +36,7 @@ export function AuthProvider({children}:{children:React.ReactNode}){
   if(next)await AsyncStorage.setItem("user",JSON.stringify(next));
   setUser(next);
  };
- return <AuthContext.Provider value={{user,loading,signIn:async(e,p)=>save(await loginApi(e,p)),signUp:async(n,e,p)=>save(await registerApi(n,e,p)),signOut:async()=>{await AsyncStorage.multiRemove(["token","user"]);setUser(null)}}}>{children}</AuthContext.Provider>
+ const updateUser=async(patch:Partial<User>)=>{if(!user)return;const merged={...user,...patch};await AsyncStorage.setItem("user",JSON.stringify(merged));setUser(merged)};
+ return <AuthContext.Provider value={{user,loading,updateUser,signIn:async(e,p)=>save(await loginApi(e,p)),signUp:async(n,e,p)=>save(await registerApi(n,e,p)),signOut:async()=>{await AsyncStorage.multiRemove(["token","user"]);setUser(null)}}}>{children}</AuthContext.Provider>
 }
 export const useAuth=()=>useContext(AuthContext);
